@@ -362,13 +362,19 @@ function coffeeDrink()
   end)
 end
 
+RegisterNUICallback('CoffeeTest', function()
+ 
+  
+  coffeeDrink()
+  emoteCoffee = true
+end)
+
 RegisterNUICallback('coffee', function()
+ 
   TaskStartScenarioInPlace(PlayerPedId(), "world_human_aa_coffee", 0, true)
   ResetScenarioTypesEnabled()
   emotePlaying = true
-  
-  --coffeeDrink()
-  --emoteCoffee = true
+ 
 end)
  
 
@@ -468,11 +474,30 @@ end)
 RegisterNUICallback('BUSTED', function()
  
 
-  TriggerEvent( 'busted' )
+
+ 
+   
+      RequestAnimDict("random@arrests")
+      RequestAnimDict("random@arrests@busted")
+      while not HasAnimDictLoaded("random@arrests") do
+        
+        Citizen.Wait(0)
+      end
+            TaskPlayAnim(PlayerPedId(), "random@arrests", "idle_2_hands_up", 8.0, 1.0, -1, 2, 0, 0, 0, 0 )       
+            Wait (4000)
+            TaskPlayAnim(PlayerPedId(), "random@arrests", "kneeling_arrest_idle", 8.0, 1.0, -1, 2, 0, 0, 0, 0 )
+            Wait (500)
+            TaskPlayAnim(PlayerPedId(), "random@arrests@busted", "enter", 8.0, 1.0, -1, 2, 0, 0, 0, 0 )
+            Wait (1000)
+            TaskPlayAnim(PlayerPedId(), "random@arrests@busted", "idle_a", 8.0, 1.0, -1, 9, 0, 0, 0, 0 )
+            emotePlaying = true
+        
+   
+end)
 
   
  
-end)
+
 
 
 -- For smoke emote. Prop + walk and smoke
@@ -1205,44 +1230,8 @@ RegisterNUICallback('WORLD_HUMAN_BUM_FREEWAY', function()
 end)
 
 
-function loadAnimDict( dict )
-  while ( not HasAnimDictLoaded( dict ) ) do
-      RequestAnimDict( dict )
-      Citizen.Wait( 5 )
-  end
-end
---Busted kneel
 
-AddEventHandler( 'busted', function()
- 
-  if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
-      loadAnimDict( "random@arrests" )
-      loadAnimDict( "random@arrests@busted" )
-			      if ( IsEntityPlayingAnim( player, "random@arrests@busted", "idle_a", 3 ) ) then
-        
-          TaskPlayAnim( player, "random@arrests@busted", "exit", 8.0, 1.0, -1, 2, 0, 0, 0, 0 )
-          Wait (3000)
-          TaskPlayAnim( player, "random@arrests", "kneeling_arrest_get_up", 8.0, 1.0, -1, 128, 0, 0, 0, 0 )
-      else
-          TaskPlayAnim( player, "random@arrests", "idle_2_hands_up", 8.0, 1.0, -1, 2, 0, 0, 0, 0 )
-          Wait (4000)
-          TaskPlayAnim( player, "random@arrests", "kneeling_arrest_idle", 8.0, 1.0, -1, 2, 0, 0, 0, 0 )
-          Wait (500)
-          TaskPlayAnim( player, "random@arrests@busted", "enter", 8.0, 1.0, -1, 2, 0, 0, 0, 0 )
-          Wait (1000)
-          TaskPlayAnim( player, "random@arrests@busted", "idle_a", 8.0, 1.0, -1, 9, 0, 0, 0, 0 )
-          emotePlaying = true
-     end   
-  end
-end )
 
-Citizen.CreateThread(function()
-  while true do
-      Citizen.Wait(0)
-      if IsEntityPlayingAnim(GetPlayerPed(PlayerId()), "random@arrests@busted", "idle_a", 3) then
-       
-      end
-  end
-end)
+
 
 
