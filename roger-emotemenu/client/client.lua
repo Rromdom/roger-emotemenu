@@ -723,7 +723,7 @@ RegisterNUICallback('world_human_gardener_plant', function()
 end)
 RegisterNUICallback('WORLD_HUMAN_GUARD_STAND', function()
 
-	TaskStartScenarioInPlace(PlayerPedId(), "WORLD_HUMAN_GUARD_STAND", 0, true)
+	TaskStartScenarioInPlace(PlayerPedId(), "WORLD_HUMAN_COP_IDLES", 0, true)
   ResetScenarioTypesEnabled()
   emotePlaying = true
 end)
