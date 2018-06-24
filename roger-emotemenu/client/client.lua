@@ -387,7 +387,7 @@ RegisterNUICallback('sitt1', function()
     Citizen.Wait(0)
 
   end
-  TaskPlayAnim(PlayerPedId(), "anim@heists@prison_heistunfinished_biztarget_idle" ,"target_idle" ,8.0, -8.0, -1, 0, 0, false, false, false )
+  TaskPlayAnim(PlayerPedId(), "anim@heists@prison_heistunfinished_biztarget_idle" ,"target_idle" ,8.0, -8.0, -1, 9, 0, false, false, false )
   emotePlaying = true
 
 end)
@@ -570,7 +570,7 @@ RegisterNUICallback('djj', function()
     Citizen.Wait(0)
 
   end
-  TaskPlayAnim(PlayerPedId(), "anim@mp_player_intcelebrationmale@dj" ,"dj" ,8.0, -8.0, -1, 0, 0, false, false, false )
+  TaskPlayAnim(PlayerPedId(), "anim@mp_player_intcelebrationmale@dj" ,"dj" ,8.0, -8.0, -1, 9, 0, false, false, false )
   emotePlaying = true
 
 end)
